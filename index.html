@@ -41,7 +41,7 @@ if(!window.jspdf){document.write('<script src="https://cdnjs.cloudflare.com/ajax
   box-sizing:border-box;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-padding-top:80px}
+html{scroll-padding-top:80px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{
   margin:0;
   background:radial-gradient(ellipse at 50% 12%, #221a12 0%, #130f0b 55%, #080705 100%);
@@ -49,6 +49,8 @@ body{
   font-family:'Plus Jakarta Sans','Poppins','Noto Sans Sinhala',system-ui,sans-serif;
   min-height:100vh;
   -webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
 }
 
 /* Navbar Glassmorphism */
@@ -333,9 +335,10 @@ button.primary:hover{
 .logo{left:5.96cqw;top:3.98cqw;width:26.8cqw}
 .wm{left:21.6cqw;top:59.2cqw;width:56.7cqw;pointer-events:none}
 .rx{left:5.5cqw;top:52cqw;width:10.2cqw}
-.rxbox{position:absolute;right:5.1cqw;top:3.9cqw;display:inline-flex;align-items:center;gap:.7cqw;background:rgba(218,143,58,.08);border:.16cqw solid rgba(218,143,58,.5);border-radius:.8cqw;padding:.25cqw .9cqw;user-select:none;z-index:2}
-.rxbox-lbl{font-size:1.9cqw;line-height:1;font-weight:700;color:#da8f3a;letter-spacing:.04em;text-transform:uppercase}
-.rxno{font-size:2.2cqw;line-height:1.2;font-weight:700;color:#3b2a1b;font-family:'Poppins',monospace,sans-serif;letter-spacing:.03em;outline:none;user-select:text;min-width:14cqw;text-align:right}
+.rxbox{position:absolute;right:5.1cqw;top:3.6cqw;display:inline-flex;align-items:center;gap:max(3px, .6cqw);background:rgba(218,143,58,.08);border:max(1px, .18cqw) solid rgba(218,143,58,.5);border-radius:max(3px, .8cqw);padding:max(2px, .35cqw) max(6px, .9cqw);user-select:none;z-index:2;box-sizing:border-box;white-space:nowrap}
+.rxbox-lbl{font-size:1.9cqw;line-height:1.2;font-weight:700;color:#da8f3a;letter-spacing:.04em;text-transform:uppercase;display:inline-block;vertical-align:middle}
+.rxno{font-size:2.1cqw;line-height:1.2;font-weight:700;color:#3b2a1b;font-family:'Poppins',monospace,sans-serif;letter-spacing:.03em;outline:none;user-select:text;text-align:left;display:inline-block;vertical-align:middle}
+.rxno:empty::before{content:"0000";color:#c9b49a}
 .rxbox:hover{border-color:#da8f3a;background:rgba(218,143,58,.14)}
 .title{right:5.1cqw;top:8.6cqw;font-size:3.05cqw;line-height:1;font-weight:700;color:#b38a61;text-align:right}
 .addr{right:5.1cqw;top:11.9cqw;font-size:2.45cqw;line-height:2.7cqw;font-weight:300;color:#b38a61;text-align:right}
@@ -343,9 +346,9 @@ button.primary:hover{
 .cred{right:5.1cqw;top:24.8cqw;font-size:2.25cqw;line-height:1;text-align:right}
 .lbl{font-size:3cqw;line-height:1;font-weight:700}
 .f{position:absolute;height:3.5cqw;border-bottom:.15cqw solid #da8f3a;font-size:2.8cqw;line-height:3.1cqw;color:#3b2a1b;padding:0 .6cqw;overflow:hidden;white-space:nowrap}
-.opt{position:absolute;top:43.3cqw;height:4.3cqw;display:flex;align-items:center;gap:1cqw;cursor:pointer;font-size:3cqw;font-weight:700;line-height:1;user-select:none}
-.box{position:relative;width:4.3cqw;height:4.3cqw;border:.25cqw solid #da8f3a;border-radius:.9cqw}
-.opt[aria-checked="true"] .box::after{content:"";position:absolute;left:1.35cqw;top:.35cqw;width:1.2cqw;height:2.4cqw;border:solid #da8f3a;border-width:0 .5cqw .5cqw 0;transform:rotate(45deg)}
+.opt{position:absolute;top:43.1cqw;height:4.2cqw;display:inline-flex;align-items:center;gap:.9cqw;cursor:pointer;font-size:2.9cqw;font-weight:700;line-height:1;user-select:none;margin:0;padding:0}
+.box{position:relative;width:4.1cqw;height:4.1cqw;border:max(1px, .25cqw) solid #da8f3a;border-radius:max(3px, .8cqw);flex-shrink:0;box-sizing:border-box}
+.opt[aria-checked="true"] .box::after{content:"";position:absolute;left:1.2cqw;top:.25cqw;width:1.1cqw;height:2.3cqw;border:solid #da8f3a;border-width:0 max(1.5px, .45cqw) max(1.5px, .45cqw) 0;transform:rotate(45deg);box-sizing:border-box}
 .rxwrap{left:5.3cqw;top:52cqw;width:89.6cqw;height:68.5cqw;overflow:hidden;white-space:normal}
 .spacer{float:left;width:11cqw;height:11cqw}
 .rxtext{min-height:60cqw;font-size:3cqw;line-height:1.75;white-space:pre-wrap;word-break:break-word;color:#3b2a1b;outline:none}
@@ -450,12 +453,11 @@ button:active {
     flex-shrink: 0;
   }
 
-  .opt {
-    padding: 0.5rem 0.6rem;
-    margin-top: -0.5rem;
-  }
-  .f.ed {
-    padding: 0 0.8cqw;
+  .opt::before {
+    content: "";
+    position: absolute;
+    inset: -0.4rem;
+    z-index: 1;
   }
 }
 
@@ -723,12 +725,26 @@ button:active {
   .rxtext:empty::before{
     content:none !important;
   }
+  .opt{
+    margin:0 !important;
+    padding:0 !important;
+  }
+  .opt::before{
+    display:none !important;
+  }
+  .f.ed{
+    padding:0 .6cqw !important;
+  }
 }
 /* Exporting PDF high-fidelity overrides */
 .exporting-pdf{
+  width:760px !important;
+  min-width:760px !important;
+  max-width:760px !important;
+  aspect-ratio:1410/2000 !important;
   box-shadow:none !important;
   border-radius:0 !important;
-  aspect-ratio:1410/2000 !important;
+  margin:0 auto !important;
 }
 .exporting-pdf .rxtext:empty::before{
   content:none !important;
@@ -738,9 +754,24 @@ button:active {
   background:transparent !important;
   box-shadow:none !important;
 }
+.exporting-pdf .rxbox{
+  background:rgba(218,143,58,.08) !important;
+  border-color:rgba(218,143,58,.5) !important;
+  box-shadow:none !important;
+}
 .exporting-pdf .rxbox:hover{
   background:rgba(218,143,58,.08) !important;
   border-color:rgba(218,143,58,.5) !important;
+}
+.exporting-pdf .opt{
+  margin:0 !important;
+  padding:0 !important;
+}
+.exporting-pdf .opt::before{
+  display:none !important;
+}
+.exporting-pdf .f.ed{
+  padding:0 .6cqw !important;
 }
 </style>
 </head>
@@ -1210,19 +1241,49 @@ button:active {
   if (wasZoomed) wrap.classList.remove('zoomed');
 
   var sheet = $('#sheet');
+
+  // Lock sheet to canonical 760px desktop width so mobile and desktop produce identical high-res PDFs
+  var origStyleWidth = sheet.style.width;
+  var origStyleMinWidth = sheet.style.minWidth;
+  var origStyleMaxWidth = sheet.style.maxWidth;
+  var origWrapOverflow = wrap ? wrap.style.overflow : '';
+
   sheet.classList.add('exporting-pdf');
+  sheet.style.width = '760px';
+  sheet.style.minWidth = '760px';
+  sheet.style.maxWidth = '760px';
+  if (wrap) wrap.style.overflow = 'hidden';
+
+  // Force reflow so container queries and styles compute against 760px
+  void sheet.offsetWidth;
 
   // Scale target for pristine A5 print quality (1410 x 2000 px)
-  var targetWidth = 1410;
-  var currentWidth = sheet.offsetWidth || 760;
-  var scale = Math.max(1.8, targetWidth / currentWidth);
+  var scale = 1410 / 760;
 
   try {
    var canvas = await html2canvas(sheet, {
     scale: scale,
+    width: 760,
+    height: Math.round(760 * 2000 / 1410),
+    windowWidth: 1200,
+    windowHeight: 1600,
     useCORS: true,
     logging: false,
-    backgroundColor: '#f6f2e7'
+    backgroundColor: '#f6f2e7',
+    onclone: function(clonedDoc, clonedElement) {
+     var target = clonedElement || clonedDoc.getElementById('sheet');
+     if (target) {
+      target.classList.add('exporting-pdf');
+      target.style.width = '760px';
+      target.style.minWidth = '760px';
+      target.style.maxWidth = '760px';
+      target.style.height = Math.round(760 * 2000 / 1410) + 'px';
+      target.style.aspectRatio = '1410/2000';
+      target.style.boxShadow = 'none';
+      target.style.borderRadius = '0';
+      target.style.margin = '0 auto';
+     }
+    }
    });
 
    var imgData = canvas.toDataURL('image/jpeg', 0.96);
@@ -1259,6 +1320,10 @@ button:active {
    window.print();
   } finally {
    sheet.classList.remove('exporting-pdf');
+   sheet.style.width = origStyleWidth;
+   sheet.style.minWidth = origStyleMinWidth;
+   sheet.style.maxWidth = origStyleMaxWidth;
+   if (wrap) wrap.style.overflow = origWrapOverflow;
    if (wasZoomed) wrap.classList.add('zoomed');
    if (printBtn) {
     printBtn.disabled = false;
